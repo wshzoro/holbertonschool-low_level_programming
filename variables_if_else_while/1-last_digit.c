@@ -1,17 +1,18 @@
 #include <stdio.h>
-#include <stdlib.h> // for abs()
+#include <stdlib.h> // For rand and abs functions
+#include <time.h> // For srand function
 
 int main(void)
 {
     int n;
-    int last_digit; // Move declaration to the top
+    int last_digit;
 
-    // Randomly assign a value to n (this is typically done with rand() in a full program)
-    n = rand() - RAND_MAX / 2;
+    srand(time(0)); // Initialize the random number generator
+    n = rand() - RAND_MAX / 2; // Generate a random number and assign it to n
 
-    last_digit = abs(n) % 10; // Get the last digit using absolute value to handle negatives
+    last_digit = abs(n) % 10; // Get the last digit of the number using the absolute value
 
-    // Print the result
+    // Print the result with appropriate message
     printf("Last digit of %d is %d and is ", n, last_digit);
 
     if (last_digit > 5)
