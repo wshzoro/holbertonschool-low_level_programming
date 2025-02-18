@@ -1,34 +1,42 @@
+#include <stdlib.h>
+#include <time.h>
 #include <stdio.h>
-#include <stdlib.h> /* For rand and abs functions*/
-#include <time.h> /* For srand function*/
+
+/**
+ * main - Entry point
+ *
+ * Description: Prints the last digit of a random number
+ * and compares it to certain conditions.
+ * Return: Always 0 (Success)
+ */
 
 int main(void)
 {
-    int n;
-    int last_digit;
+	int n;
+	int last_digit;
 
-    srand(time(0)); /* Initialize the random number generator */
-    n = rand() - RAND_MAX / 2; /* Generate a random number and assign it to n */
+	srand(time(0));
+	n = rand() - RAND_MAX / 2;
 
-    last_digit = abs(n) % 10; /* Get the last digit of the number using the absolute value */
+	/* Get the last digit of n */
+	last_digit = n % 10;
 
-    /* Print the result with appropriate message */
-    printf("Last digit of %d is %d and is ", n, last_digit);
+	/* Print the result */
+	printf("Last digit of %d is %d ", n, last_digit);
 
-    if (last_digit > 5)
-    {
-        printf("greater than 5");
-    }
-    else if (last_digit == 0)
-    {
-        printf("0");
-    }
-    else
-    {
-        printf("less than 6 and not 0");
-    }
+	/* Check and print conditions */
+	if (last_digit > 5)
+	{
+		printf("and is greater than 5\n");
+	}
+	else if (last_digit == 0)
+	{
+		printf("and is 0\n");
+	}
+	else if (last_digit < 6 && last_digit != 0)
+	{
+		printf("and is less than 6 and not 0\n");
+	}
 
-    printf("\n");
-
-    return 0;
+	return (0);
 }
