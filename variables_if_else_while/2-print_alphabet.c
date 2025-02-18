@@ -7,7 +7,7 @@ char letter;
 for (letter = 'a'; letter <= 'z'; letter++)
 putchar(letter);
 
-putchar('\n'); // Print a new line
+putchar('\n'); /* Print a new line */
 
 return (0);
 }
