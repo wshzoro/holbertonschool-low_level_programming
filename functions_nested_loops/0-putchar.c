@@ -11,7 +11,6 @@
 
 int main (void)
 {
-// Print the string "_putchar"
 _putchar('_');
 _putchar('p');
 _putchar('u');
@@ -20,7 +19,7 @@ _putchar('c');
 _putchar('h');
 _putchar('a');
 _putchar('r');
-_putchar('\n'); // Print a new line
+_putchar('\n');
 
-return 0; // Return 0 to indicate the program ran successfully
+return 0;
 }
