@@ -2,7 +2,7 @@
 
 /**
 * jack_bauer - prints every minute of the day of Jack Bauer
-*                The time is printed in the format HH:MM 
+*            The time is printed in the format HH:MM
 * Return: followed by a new line.
 */
 void jack_bauer(void)
