@@ -15,7 +15,7 @@ for (j = 0; j < 10; j++)
 prod = i *j;
 if (j == 0)
 {
-_putchar('0' + prodd);
+_putchar('0' + prod);
 }
 else
 {
