@@ -8,6 +8,7 @@
  */
 
  int _isupper(int c)
+ scanf("%c", &c);
 {
     if (_isupper(c))
 
