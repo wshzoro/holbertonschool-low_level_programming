@@ -10,9 +10,9 @@
 void print_number(void)
 
 {
-char number;
-for (number='0'; number <= '9'; number ++)
-_putchar(number);
+char (c);
+for (c='0'; c <= '9'; c++)
+_putchar(c);
 _putchar ('\n');
 
 }
