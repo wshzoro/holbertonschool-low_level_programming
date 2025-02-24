@@ -7,7 +7,7 @@
 * Returns: followed by a new line.
 */
 
-int print_number(void)
+void print_number(void)
 
 {
 char number;
