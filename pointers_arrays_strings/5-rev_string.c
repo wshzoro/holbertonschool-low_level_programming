@@ -13,10 +13,8 @@ void rev_string(char *s)
     int i, r;
     char temp;
 
-    // Trouver la longueur de la chaîne
     r = strlen(s) - 1;
 
-    // Inverser la chaîne
     for (i = 0; i < r; i++, r--)
     {
         temp = s[i];
