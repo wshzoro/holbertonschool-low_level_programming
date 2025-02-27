@@ -7,7 +7,6 @@
 *Return: length of the strin
 */
 int _strlen(char *s)
-
 {
 int len = 0;
 
