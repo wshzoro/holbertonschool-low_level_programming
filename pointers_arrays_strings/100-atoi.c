@@ -19,11 +19,14 @@ sign *= -1;
 else if (*s == '+')
 sign *= 1;
 else if (*s >= '0' && *s <= '9')
+{ 
+if (result > (2147483647 - (*s - '0')) / 10)
 {
-result = result * 10 + (*s - '0');
-found_digit = 1;
+return (sign == 1 ? 2147483647 : -2147483648);
 }
-else if (found_digit)
+result = result * 10 + (*s - '0');
+}
+else if (result > 0)
 break;
 s++;
 }
