@@ -2,7 +2,7 @@
 #include "main.h"
 
 /**
- * void print_array - print n elements of an array of integers
+ * print_array - print n elements of an array of integers
  * @a: pointer to the array
  * @n: number of elements to print
  * followed by new line
