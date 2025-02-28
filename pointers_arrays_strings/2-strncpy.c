@@ -5,7 +5,7 @@
  * *_strncpy - copies a string
  * @dest: the destination string where the content is copied
  * @src: the source string to copy from
- * 
+ *
  * Return: The maximum number of char
  */
 
