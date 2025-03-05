@@ -3,7 +3,8 @@
 
 /**
 * _memcpy - copies memory area
-* @dest: a pointer to the destination buffer location where the data is to be copied
+* @dest: a pointer to the destination buffer location
+* where the data is to be copied
 * @src: a pointer to the source buffer from where the data is to be copied
 * @n: number of bytes to be copied
 *
