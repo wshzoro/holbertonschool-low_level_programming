@@ -8,12 +8,24 @@
 *
 * Return: A pointer to the resulting string dest.
 */
-char *_strncat(char *dest, char *src, unsigned int n)
+char *_strncat(char *dest, char *src, int n)
 {
-unsigned int i;
-for (i = 0; i < n; i++)
+int i = 0;
+int len = 0;
+int compteur = 0;
+
+while (dest[len] != '\0')
 {
-dest[i] = src[i];
+len++;
 }
+
+while (src[i] != '\0' && compteur < n)
+{
+dest[len] = src[i];
+i++;
+len++;
+compteur++;
+}
+
 return (dest);
 }
