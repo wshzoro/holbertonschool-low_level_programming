@@ -6,7 +6,7 @@
 * @s: string where we located
 * @c: character to located
 *
-* Return : a pointer to dest
+* Return: a pointer to dest
 */
 char *_strchr(char *s, char c)
 {
