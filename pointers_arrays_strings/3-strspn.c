@@ -25,10 +25,10 @@ found = 1;
 break;
 }
 }
-    
+
 if (!found)
 break;
-    
+
 count++;
 s++;
 }
