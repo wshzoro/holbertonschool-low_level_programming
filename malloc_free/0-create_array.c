@@ -17,7 +17,7 @@ unsigned int i;
 if (size == 0)
 return (NULL);
 
-arr = malloc(sizeof(char));
+arr = malloc(size * sizeof(char));
 if (arr == NULL)
 return (NULL);
 
