@@ -4,7 +4,7 @@
 #include <string.h>
 
 /**
-* *_strdup - return a pointer to a newly allocated space in memory
+* _strdup - return a pointer to a newly allocated space in memory
 * @str: string
 *
 * Return: NULL if str is NULL
