@@ -38,7 +38,7 @@ default:
 i++;
 continue;
 }
-separator = ",";
+separator = ", ";
 i++;
 }
 printf("\n");
