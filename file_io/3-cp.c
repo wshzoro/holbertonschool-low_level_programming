@@ -1,30 +1,43 @@
+#include <stdio.h>
 #include "main.h"
+#include <stdlib.h>
+
+char *create_buffer(char *file);
+void close_file(int fd);
 
 /**
- * error_case - Handles different error cases for the cp program
- * @err_num: The error number
- * @file: The file name to be printed in the error message
- * @fd: The file descriptor to be printed in the erro
- * return: void
+ * create_buffer - Allocates 1024 bytes for a buffer.
+ * @file: The name of the file buffer is storing chars for.
+ *
+ * Return: A pointer to the newly-allocated buffer.
  */
-void error_case(int err_num, char *file, int fd)
+char *create_buffer(char *file)
 {
-if (err_num == 97)
+char *buffer;
+
+buffer = malloc(sizeof(char) * 1024);
+
+if (buffer == NULL)
 {
-dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-exit(97);
-}
-else if (err_num == 98)
-{
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
-exit(98);
-}
-else if (err_num == 99)
-{
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
+dprintf(STDERR_FILENO,
+"Error: Can't write to %s\n", file);
 exit(99);
 }
-else if (err_num == 100)
+
+return (buffer);
+}
+
+/**
+ * close_file - Closes file descriptors.
+ * @fd: The file descriptor to be closed.
+ */
+void close_file(int fd)
+{
+int c;
+
+c = close(fd);
+
+if (c == -1)
 {
 dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 exit(100);
@@ -32,42 +45,58 @@ exit(100);
 }
 
 /**
- * main - Copies the content of a file to another file
- * @argc: The number of command line arguments
- * @argv: An array of pointers to the command line arguments
+ * main - Copies the contents of a file to another file.
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
  *
- * Return: 0 on success
+ * Return: 0 on success.
+ *
+ * Description: If the argument count is incorrect - exit code 97.
+ * If file_from does not exist or cannot be read - exit code 98.
+ * If file_to cannot be created or written to - exit code 99.
+ * If file_to or file_from cannot be closed - exit code 100.
  */
 int main(int argc, char *argv[])
 {
-int fd_from, fd_to, r;
-char buffer[1024];
+int from, to, r, w;
+char *buffer;
 
 if (argc != 3)
-error_case(97, NULL, 0);
-
-fd_from = open(argv[1], O_RDONLY);
-if (fd_from == -1)
-error_case(98, argv[1], 0);
-
-fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-if (fd_to == -1)
-error_case(99, argv[2], fd_from);
-
-while ((r = read(fd_from, buffer, sizeof(buffer))) > 0)
 {
-if (write(fd_to, buffer, r) != r)
-error_case(99, argv[2], fd_from);
+dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+exit(97);
 }
 
-if (r == -1)
-error_case(98, argv[1], fd_from);
+buffer = create_buffer(argv[2]);
+from = open(argv[1], O_RDONLY);
+r = read(from, buffer, 1024);
+to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+do {
+if (from == -1 || r == -1)
+{
+dprintf(STDERR_FILENO,
+"Error: Can't read from file %s\n", argv[1]);
+free(buffer);
+exit(98);
+}
 
-if (close(fd_from) == -1)
-error_case(100, NULL, fd_from);
+w = write(to, buffer, r);
+if (to == -1 || w == -1)
+{
+dprintf(STDERR_FILENO,
+"Error: Can't write to %s\n", argv[2]);
+free(buffer);
+exit(99);
+}
 
-if (close(fd_to) == -1)
-error_case(100, NULL, fd_to);
+r = read(from, buffer, 1024);
+to = open(argv[2], O_WRONLY | O_APPEND);
+
+} while (r > 0);
+
+free(buffer);
+close_file(from);
+close_file(to);
 
 return (0);
 }
